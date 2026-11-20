@@ -59,3 +59,38 @@ def encode_receipt(receipt: dict) -> bytes:
 
 def decode_receipt(payload: bytes) -> dict:
     return _decode(payload)
+
+
+COUPLED_VERSION = 2
+
+
+def _decode_coupled(payload: bytes) -> dict:
+    record = json.loads(payload.decode('utf-8'))
+    if not isinstance(record, dict) or type(record.get('version')) is not int or record['version'] != COUPLED_VERSION:
+        raise ValueError('unsupported cross-fixture report record version')
+    return record
+
+
+def _ratio(value: object) -> Fraction:
+    if not isinstance(value, str):
+        raise ValueError('cross-fixture record values must be rational text')
+    return Fraction(value)
+
+
+def decode_coupled_report(payload: bytes) -> dict:
+    body = _decode_coupled(payload)
+    body['feasible'] = bool(body['feasible'])
+    if body['jumper_currents'] is not None:
+        body['jumper_currents'] = [_ratio(value) for value in body['jumper_currents']]
+    if body['dissipation'] is not None:
+        body['dissipation'] = [_ratio(value) for value in body['dissipation']]
+    body['jumpers'] = [
+        [name, list(start), list(end), _ratio(value)]
+        for name, start, end, value in body['jumpers']
+    ]
+    body['injections'] = [[list(endpoint), _ratio(value)] for endpoint, value in body['injections']]
+    return body
+
+
+def decode_coupled_receipt(payload: bytes) -> dict:
+    return _decode_coupled(payload)

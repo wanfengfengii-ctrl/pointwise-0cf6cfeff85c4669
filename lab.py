@@ -36,12 +36,13 @@ def write_transaction(db: sqlite3.Connection):
 def initialize(db: sqlite3.Connection) -> None:
     from fixture.store import FixtureStore
     from intake.store import IntakeStore
+    from report.coupled_store import CoupledStore
     from report.store import ReportStore
     from revision.store import RevisionStore
 
     db.execute('PRAGMA foreign_keys = ON')
     with write_transaction(db):
-        for store in (FixtureStore, IntakeStore, RevisionStore, ReportStore):
+        for store in (FixtureStore, IntakeStore, RevisionStore, ReportStore, CoupledStore):
             store(db).initialize()
 
 

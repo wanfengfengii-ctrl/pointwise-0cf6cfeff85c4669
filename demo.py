@@ -44,6 +44,9 @@ def main() -> None:
             for record in (old, new):
                 print(export(next_shift, record.report_id).decode('utf-8'))
 
+    from coupled_demo import main as coupled_main
+    coupled_main()
+
 
 if __name__ == '__main__':
     main()

@@ -9,10 +9,11 @@
 ```sh
 python3 -B check_project.py
 python3 -B demo.py
+python3 -B coupled_sample.py
 python3 -B -m lab shift.sqlite3
 ```
 
-演示读取 `examples/day_shift.json`，在临时库中登记和接纳，冻结、签发、勘误后再次签发并关闭连接。重开后验证两份报告并打印实际通流、耗散和出处。初始化保留已有工装、测量、冻结和报告，可在现有工作库上重复运行。
+演示读取 `examples/day_shift.json`，在临时库中登记和接纳，冻结、签发、勘误后再次签发并关闭连接。重开后验证两份报告并打印实际通流、耗散和出处。初始化保留已有工装、测量、冻结和报告，可在现有工作库上重复运行。跨工装复核见 `CROSS_FIXTURE.md`。
 
 ## Python 入口
 
