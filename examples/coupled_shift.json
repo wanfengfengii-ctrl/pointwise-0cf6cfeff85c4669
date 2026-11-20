@@ -1,0 +1,35 @@
+{
+  "experiment": "HX-12",
+  "stations": [
+    {
+      "bench_name": "甲",
+      "submission_id": "shift-a",
+      "source": "M-A",
+      "nodes": ["a", "x", "b", "d", "monitor", "shield"],
+      "terminals": ["a", "b", "d", "monitor"],
+      "branches": [["ax", "a", "x"], ["xb", "x", "b"], ["guard", "monitor", "shield"]],
+      "readings": [["ax", 2, "S"], ["xb", 2, "S"], ["guard", 3, "S"]],
+      "published_terminals": ["b", "a", "d"],
+      "clamps": [["a", 0], ["b", 0], ["d", 0], ["monitor", 0]],
+      "correction_source": "M-A2",
+      "correction": [["xb", 6, "S"]]
+    },
+    {
+      "bench_name": "乙",
+      "submission_id": "shift-b",
+      "source": "M-B",
+      "nodes": ["c", "d"],
+      "terminals": ["c", "d"],
+      "branches": [],
+      "readings": [],
+      "published_terminals": ["c", "d"],
+      "clamps": [["c", 0], ["d", 0]]
+    }
+  ],
+  "injections": [[[0, "a"], 1], [[1, "c"], -1]],
+  "jumpers": {
+    "closed": [["J", [0, "b"], [1, "c"], 1]],
+    "open": [["J", [0, "b"], [1, "c"], 0]],
+    "parallel": [["J1", [0, "b"], [1, "c"], "1/2"], ["J2", [1, "c"], [0, "b"], "1/2"]]
+  }
+}

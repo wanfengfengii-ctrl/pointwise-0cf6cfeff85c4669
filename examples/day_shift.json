@@ -1,0 +1,13 @@
+{
+  "experiment": "H-072",
+  "bench": "串联复检工装",
+  "nodes": ["a", "x", "b"],
+  "terminals": ["a", "b"],
+  "branches": [["ax", "a", "x"], ["xb", "x", "b"]],
+  "submission_id": "H-072-M01",
+  "source": "工作台 M01 上午记录",
+  "readings": [["ax", 2000, "mS"], ["xb", 2, "S"]],
+  "clamps": [["a", 1], ["b", 0]],
+  "correction_source": "工作台 M02 复测记录",
+  "correction": [["xb", 6, "S"]]
+}
